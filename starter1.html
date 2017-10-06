@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BIENESTAR</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/checkbox.css">
+
+    <link rel="stylesheet" href="dist/css/_all-skins_1.css">
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+    <link rel="stylesheet" href="dist/css/fonts.googleapis.css">
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
+</head>
+
+<style type="text/css">
+    .row-centered {
+        text-align: center;
+    }
+
+    .col-centered {
+        display: inline-block;
+        float: none;
+        text-align: left;
+        margin-right: -4px;
+    }
+
+    td {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    input {
+        text-transform: uppercase;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+    .logo1 {
+        -webkit-transition: width .3s ease-in-out;
+        -o-transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+        text-align: center;
+        width: 580px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 0 15px;
+        font-weight: 300;
+        overflow: hidden;
+    }
+
+    .material-switch > input[type="checkbox"] {
+        display: none;
+    }
+
+    .material-switch > label {
+        cursor: pointer;
+        height: 0px;
+        position: relative;
+        width: 40px;
+    }
+
+    .material-switch > label::before {
+        background: rgb(0, 0, 0);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position: absolute;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        width: 40px;
+    }
+
+    .material-switch > label::after {
+        background: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        content: '';
+        height: 24px;
+        left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: -4px;
+        transition: all 0.3s ease-in-out;
+        width: 24px;
+    }
+
+    .material-switch > input[type="checkbox"]:checked + label::before {
+        background: inherit;
+        opacity: 0.5;
+    }
+
+    .material-switch > input[type="checkbox"]:checked + label::after {
+        background: inherit;
+        left: 20px;
+    }
+
+    .badgebox {
+        opacity: 0;
+    }
+
+    .badgebox + .badge {
+        /* Move the check mark away when unchecked */
+        text-indent: -999999px;
+        /* Makes the badge's width stay the same checked and unchecked */
+        width: 27px;
+    }
+
+    .badgebox:focus + .badge {
+        /* Set something to make the badge looks focused */
+        /* This really depends on the application, in my case it was: */
+
+        /* Adding a light border */
+        box-shadow: inset 0px 0px 5px;
+        /* Taking the difference out of the padding */
+    }
+
+    .badgebox:checked + .badge {
+        /* Move the check mark back when checked */
+        text-indent: 0;
+    }
+</style>
+<body class="hold-transition skin-yellow">
+<header class="header" style="background-color:#3c8dbc">
+    <div class="row">
+        <div class="col-md-3 hidden-xs"><img src='images/ng.png' class="img-responsive" alt="Responsive image"
+                                             style='float: left;'></div>
+        <div class="col-md-6 hidden-xs">
+            <center><img src='images/rv.png' class="img-responsive" alt="Responsive image" style="margin-top:6px">
+            </center>
+        </div>
+        <div class="col-md-3 hidden-xs"><img src='images/lg.png' class="img-responsive" alt="Responsive image"
+                                             style="float:right;"></div>
+    </div>
+</header>
+
+<div class="wrapper">
+
+    <header class="main-header">
+        <a href="starter.html" class="logo">
+            <span class="logo-mini"><b>S</b>FNB</span>
+
+            <span class="logo-lg"><b>SSSI</b>FANB</span>
+
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <span class="logo1 hidden-xs">Sistema de Seguridad Social Integral de la Fuerza Armada Nacional Bolivariana</span>
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu" style="display:none" id="_search" onclick="ActivarBuscar()">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown messages-menu" style="display:none">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 4 messages</li>
+                            <li>
+                                <ul class="menu">
+                                    <li><!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <!-- User Image -->
+                                                <img src="dist/img/user2-160x160.jpg" class="img-circle"
+                                                     alt="User Image">
+                                            </div>
+                                            <!-- Message title and timestamp -->
+                                            <h4>
+                                                Support Team
+                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            </h4>
+                                            <!-- The message -->
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <!-- end message -->
+                                </ul>
+                                <!-- /.menu -->
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <!-- /.messages-menu -->
+
+                    <!-- Notifications Menu -->
+                    <li class="dropdown notifications-menu" style="display:none">
+                        <!-- Menu toggle button -->
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 10 notifications</li>
+                            <li>
+                                <!-- Inner Menu: contains the notifications -->
+                                <ul class="menu">
+                                    <li><!-- start notification -->
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                    <!-- end notification -->
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks Menu -->
+                    <li class="dropdown tasks-menu" style="display:none">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 9 tasks</li>
+                            <li>
+                                <!-- Inner menu: contains the tasks -->
+                                <ul class="menu">
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <!-- Task title and progress text -->
+                                            <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                            </h3>
+                                            <!-- The progress bar -->
+                                            <div class="progress xs">
+                                                <!-- Change the css width attribute to simulate progress -->
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="images/ndisponible.jpg" onerror="this.src='images/ndisponible.jpg'"
+                                 class="user-image" alt="User Image">
+                            <span class="hidden-xs" id="_PerfilUsuario"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="images/ndisponible.jpg" class="img-circle"
+                                     onerror="this.src='images/ndisponible.jpg'" alt="User Image">
+                                <p id="_NombreUsuario">
+
+
+                                </p>
+
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="VerCambiarClave()">Cambiar
+                                        clave</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="CerrarSession()">Cerrar
+                                        Sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-link"></i> <span>Apoyos económicos</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="#">Link in level 2</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="#"><i class="fa-balance-scale"></i> <span>Carta aval</span></a></li>
+                <li><a href="#"><i class="fa fa-link"></i> <span>Reembolsos Médicos</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Farmacia
+            </h1>
+            <!--<ol class="breadcrumb">
+              <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+              <li><a href="#">Examples</a></li>
+              <li class="active">User profile</li>
+            </ol>-->
+        </section>
+        <section class="content">
+            <div class="body box">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            Tratamiento Prolongado
+                                        </h4>
+                                    </div>
+                                </a>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <form id="frmreembolso" action="#" method="post">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Beneficiario:</label>
+                                                    <select class="form-control" style="width: 100%" id="cmbbeneficiario"
+                                                            required="required">
+                                                        <option selected="selected" value="S"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Cédula:</label>
+                                                    <div class="btn-group-justified" role="group" aria-label="...">
+                                                        <div class="btn-group" style="width: 6%;" role="group">
+                                                            <input class="form-control" id="rif" required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                                    <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                                        <h4 class="panel-title">
+                                            Direccion del afiliado
+                                        </h4>
+                                    </div>
+                                </a>
+                                <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="headingTree">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Estado:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmestado" required onchange="CiudadMunicipio()">
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Ciudad:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmciudad" required>
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Municipio:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                        </div> <!-- Grupo nombres-->
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Parroquia:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmparroquia" required>
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Avenida / Edificio / Calle:</label>
+                                                <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label># Casa:</label>
+                                                <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label># Apto:</label>
+                                                <input id="txtmapto" class="form-control" disabled="disabled" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Teléfono:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone"></i>
+                                                    </div>
+                                                    <input id="txtmtelefono" class="form-control" disabled="disabled" type="text"
+                                                           data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Celular:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone"></i>
+                                                    </div>
+                                                    <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                                           data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <label class="control-label">Correo Electronico:</label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-envelope"></i>
+                                                    </div>
+                                                    <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
+                                                           required onblur="Util.ValidarCorreo()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                                        onclick="habilitarDireccion(false)"
+                                                        style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                        class="glyphicon glyphicon-edit"></i></button>
+                                                <button class="btn btn-primary btn-success" type="button"
+                                                        onclick="habilitarDireccion(true)"
+                                                        style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                        id="btndhabdire">Salvar &nbsp<i
+                                                        class="glyphicon glyphicon-save"></i></button>
+                                            </div>
+                                        </div>
+                                    </div> <!-- Grupo nombres-->
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel panel-default">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                                <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                                    <h4 class="panel-title">
+                                        Datos de Informe Médico
+                                    </h4>
+                                </div>
+                            </a>
+                            <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                                 aria-labelledby="headingTree">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Fecha de Informe Médico:</label>
+                                            <div class="input-group date" style="z-index: 1030;">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <div class="input-group input-group" style="width: 100%;">
+                                                    <input type="text" class="form-control" id="fechainformemedico"
+                                                           required="required">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Centro de Salud Militar:</label>
+                                            <select class="js-states form-control" style="width: 100%"
+                                                    id="cmbcentrosalud" required>
+                                                <option value="S" selected="selected"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+
+                                        </div>
+                                    </div> <!-- Grupo nombres-->
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Quien Avala:</label>
+                                            <input type="text" class="form-control" id="avala">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Cédula:</label>
+                                            <input id="txtmcalle" class="form-control"  type="text" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Servicio:</label>
+                                            <input id="txtmapto" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Punto de Distribución:</label>
+                                            <select class="js-states form-control" style="width: 100%"
+                                                    id="cmbcentrosalud" required>
+                                                <option value="S" selected="selected"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Codigo de Colegio Médico:</label>
+
+                                                <input id="txtmapto" class="form-control" type="text">
+
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <label class="control-label">Codigo de MPPS:</label>
+                                                <input id="txtmapto" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                                    onclick="habilitarDireccion(false)"
+                                                    style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                    class="glyphicon glyphicon-edit"></i></button>
+                                            <button class="btn btn-primary btn-success" type="button"
+                                                    onclick="habilitarDireccion(true)"
+                                                    style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                    id="btndhabdire">Salvar &nbsp<i
+                                                    class="glyphicon glyphicon-save"></i></button>
+                                        </div>
+                                    </div>
+                                </div> <!-- Grupo nombres-->
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                                <div class="row" style="padding:10px 0px;">
+                                    <div class="nav-tabs-custom box box-primary">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-fill nav-justified">
+                                            <li role="presentation" class="active"><a href="#mdmilitar"
+                                                                                      aria-controls="home" role="tab"
+                                                                                      data-toggle="tab">Tratamiento</a></li>
+                                            <li role="presentation"><a href="#mfinanciero" aria-controls="home"
+                                                                       role="tab" data-toggle="tab">Patologia</a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="mdmilitar"
+                                                 style="padding:15px">
+
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Princio Activo:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                                type="text" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Nombre comercial:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                                type="text" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Categoria:</label>
+                                                        <label>Presentación:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                                type="text" required>
+                                                    </div>
+
+                                                </div><!-- Grupo Grado-->
+
+                                                <div class="row">
+
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Dosis:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                               type="text" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Frecuencia:</label>
+                                                        <select class="js-states form-control" style="width: 100%"
+                                                                aria-hidden="true" id="cmbgrado" required
+                                                               >
+                                                            <option selected="selected" value="S"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Fecha de Vencimiento:</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input id="txtmfecharesuelto" class="form-control"
+                                                                   type="text" required>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- Grupo nombres-->
+
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <button class="btn btn-primary btn-success" type="button"
+                                                                onclick="agregarTratamiento()"
+                                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR
+                                                            &nbsp<i
+                                                                    class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead><tr><td>Principio Activo</td><td>Nombre Comercial</td><td>Presentación</td><td>Dosis</td><td>Frecuencia</td><td>F. de Vencimiento</td></tr></thead>
+                                                        <tbody>
+                                                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div><!-- Tab Tratamiento-->
+
+                                            <!-- Tab Datos Financieros-->
+
+                                            <div role="tabpanel" class="tab-pane" id="mfinanciero" style="padding:15px">
+
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12" id="_cmbminstfinanciera">
+                                                        <label>Diagnostico</label>
+                                                        <select class="js-states form-control" style="width: 100%"
+                                                                id="cmbpatologia" required>
+                                                            <option value="S" selected="selected"></option>
+                                                            <option value="0" selected="selected">Otra</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Agregar Otra Patologia:</label>
+                                                        <input type="text" class="form-control" id="otrapatologia" disabled>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-12">
+                                                        <button class="btn btn-primary btn-success" type="button"
+                                                                onclick="agregarTratamiento()"
+                                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR
+                                                            &nbsp<i
+                                                                    class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-group">
+                                                    <a href="#" class="list-group-item active">
+                                                        <b>Patologias Agregadas</b>
+                                                    </a>
+                                                    <a href="#" class="list-group-item">Gripe</a>
+                                                    <a href="#" class="list-group-item"></a>
+                                                    <a href="#" class="list-group-item"></a>
+                                                    <a href="#" class="list-group-item"></a>
+                                                </div>
+                                            </div><!-- Tab Datos Financieros-->
+
+                                        </div>
+
+                                    </div> <!-- Fila para el Tabs Militar -->
+
+
+                                </div>
+
+                            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada" style="background-color: #337ab7;
+color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+
+                        <a class="btn btn-app btn-success pull-right" style="margin-right: 10px; background-color: #337ab7;
+color: white;"
+                           onclick="cargarDatos()" id="_btnSavlvar">
+                            <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar
+                        </a>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            </form>
+    </div><!-- /.box-body -->
+    <div class="modal-footer" id="_botonesmilitar">
+
+    </div>
+</div><!-- /.box -->
+    <script>
+        $('#fechainformemedico').datepicker({
+            autoclose: true,
+            format: "dd/mm/yyyy",
+            language: 'es'
+        });
+        $('[data-mask]').inputmask();
+    </script>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+
+    </div>
+    <!-- Default to the left -->
+    <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
+</footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:;">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:;">
+                        <h4 class="control-sidebar-subheading">
+                            Custom Template Design
+                            <span class="pull-right-container">
+                    <span class="label label-danger pull-right">70%</span>
+                  </span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+
+        </div>
+        <!-- /.tab-pane -->
+        <!-- Stats tab content -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+        <!-- /.tab-pane -->
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Some information about this general settings option
+                    </p>
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="bower_components/notify/notify.min.js"></script>
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/controlador.js"></script>
+<script src="js/buzon.js"></script>
+
+<script src="bower_components/formato/numeral.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src = "js/reembolso.js" ></script>
+<script type='text/javascript'>
+    $(function () {
+
+        $("#inputSelect").on('change', function () {
+
+            var selectValue = $(this).val();
+            switch (selectValue) {
+                case "0":
+                    $("#panel1").hide();
+                    $("#panel2").hide();
+                    $("#panel3").hide();
+                    $("#panel4").hide();
+                    break;
+
+                case "1":
+                    $("#panel1").show();
+                    $("#panel2").hide();
+                    $("#panel3").hide();
+                    $("#panel4").hide();
+                    break;
+
+                case "2":
+                    $("#panel1").hide();
+                    $("#panel2").show();
+                    $("#panel3").hide();
+                    $("#panel4").hide();
+                    break;
+
+                case "3":
+                    $("#panel1").hide();
+                    $("#panel2").hide();
+                    $("#panel3").show();
+                    $("#panel4").hide();
+                    break;
+
+                case "4":
+                    $("#panel1").hide();
+                    $("#panel2").hide();
+                    $("#panel3").hide();
+                    $("#panel4").show();
+                    break;
+            }
+
+        }).change();
+
+    });
+</script>
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .filaconcep{
+            font-size: 12px;
+        }
+        .bordeado {
+            border: black 1px solid;
+        }
+
+        .biz {
+            border-left: black 1px solid;
+        }
+
+        .bde {
+            border-right: black 1px solid;
+        }
+
+        .btop {
+            border-top: black 1px solid;
+        }
+
+        .bajo {
+            border-bottom: black 1px solid;
+        }
+
+        .contenedor {
+            width: 1000px;
+
+        }
+
+        .tcontenedor {
+            width: 100%;
+        }
+
+        .textoCenter {
+            text-align: center;
+        }
+
+        .texto12 {
+            font-size: 12px;
+        }
+
+        .texto10 {
+            font-size: 10px;
+        }
+
+        .doble {
+            height: 30px;
+        }
+
+        .simple {
+            height: 20px;
+        }
+
+        .fondo {
+            background-color: #979a93;
+        }
+
+        .junta {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <div class="contenedor">
+
+        <table class="tcontenedor" border=0>
+            <tr>
+                <td style="width: 38%"><img src="images/lg.png" style="float: left">
+                    <center><p style="font-size: 8px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
+                        POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
+                        INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                        GERECIA DE BIENESTAR Y SEGURIDAD</p></center>
+                </td>
+
+                <td class="textoCenter" rowspan="2">
+                    <h3>COMPROBANTE DE SOLICITUD DE REEMBOLSOS<br>POR SERVICIOS M&Eacute;DICOS</h3>
+                </td>
+                <td class="biz bde btop bajo" style="width: 25%">
+                    N° DE SOLITUD: <b id="lblnsolicitud"></b><br><br>
+                    FECHA: <b id="lblfecha"></b>
+                </td>
+
+            </tr>
+        </table>
+
+
+        <table class="tcontenedor junta" border=0>
+            <tbody>
+            <tr class="texto12 simple" style="height: 30px;">
+                <td style="width:30%;" class="biz bde btop">
+                    CEDULA DE IDENTIDAD DEL AFILIADO:
+                    <br><h3><b id="lblcedula"></b></h3>
+                </td>
+                <td style="width:70%;" colspan="3" class="bde btop">APELLIDOS Y NOMBRES DEL AFILIADO:
+                    <br><h3><b id="lblnombre"></h3></b>
+                </td>
+            </tr>
+
+
+
+            <tr class="texto12 biz bde bajo btop" >
+               <td >OBSERVACIOS:</td>
+            </tr>
+
+
+            </tbody>
+        </table>
+
+
+</body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/formato/numeral.js"></script>
+
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/controlador.js"></script>
+<script>
+    function imprimir() {
+        document.getElementById('btnPrint').style.display = 'none';
+        window.print();
+        window.close();
+    }
+    let pos='';
+    $(function () {
+        numeral.locale('es-es');
+        $.obtener = function (key) {
+            key = key.replace(/[\[]/, '\\[');
+            key = key.replace(/[\]]/, '\\]');
+            var pattern = "[\\?&]" + key + "=([^&#]*)";
+            var regex = new RegExp(pattern);
+            var url = unescape(window.location.href);
+            var results = regex.exec(url);
+            if (results === null) {
+                return null;
+            } else {
+                return results[1];
+            }
+        };
+        var id = $.obtener("id");
+        pos = $.obtener("pos");
+        console.log(id);
+        Buscar(id);
+    });
+
+    function Buscar(id) {
+        console.log(militar);
+        if (id != undefined) {
+            $("#_cedula").val(id);
+        }
+        if ($("#_cedula").val() == "") {
+            return false;
+        }
+
+        var url = Conn.URL + "militar/crud/" +id;
+        var request = CargarAPI({
+            sURL: url,
+            metodo: 'GET',
+            valores: '',
+            Objeto: militar
+        });
+
+        request.then(function (xhRequest) {
+            militar = JSON.parse(xhRequest.responseText);
+            llenar(id);
+
+        });
+
+
+        //CargarAPI(url, "GET", "", militar);
+
+
+    }
+
+    function llenar(formato) {
+        if (formato != undefined) {
+
+        }
+        if (militar.Persona != undefined) {
+            var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
+            $("#lblnombre").text(ncompleto);
+
+            $("#lblcomponente").text(militar.Componente.descripcion);
+
+            $("#lblgrado").text(militar.Grado.descripcion);
+
+            $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
+
+            crearLista();
+
+            var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
+
+            $("#lblestadocivil").text(estcivil);
+
+            $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+            var defestados = JSON.parse(sessionStorage.getItem("ipsfaEstado"));
+            console.log(defestados);
+            if (militar.Persona.Direccion != undefined) {
+                var DIR = militar.Persona.Direccion[0];
+                Estados.ObtenerEstados();
+                var estado = "";
+
+                $.each(defestados,function(){
+                    if(this.codigo == DIR.estado){
+                        estado = this.nombre;
+                    }
+                });
+
+                var rirec ="ESTADO "+ estado + ", CIUDAD " + DIR.ciudad + ", MUNICIPIO " + DIR.municipio + ", PARROQUIA " + DIR.parroquia + ", AV/CALLE " + DIR.calleavenida + ", CASA/APT " + DIR.casa + "|" + DIR.apartamento
+                $("#lbldireccion").text(rirec);
+            }
+
+        } else {
+            alert("Cedula no se encuentra registrada como militar dentro del sistema");
+        }
+    }
+
+    function crearLista() {
+        if(pos == null){
+            pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
+            pos--;
+        }
+        console.log(pos);
+
+        var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+        console.log(reem);
+        console.log(reem.CuentaBancaria.institucion);
+        $("#lblnsolicitud").text(reem.numero);
+        $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
+        $("#lblbanco").text(Util.ConvertirBanco(reem.CuentaBancaria.institucion));
+        $("#lblcuenta").text(reem.CuentaBancaria.cuenta);
+
+        var tipoc = reem.CuentaBancaria.tipo=="CA" ? "CUENTA DE AHORRO":"CUENTA CORRIENTE";
+        $("#lbltipoc").text(tipoc);
+        $("#lblmontot").text(numeral(parseFloat(reem.montosolicitado)).format('0,0.00'));
+        var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+        var fila ="";
+        $.each(concep.Concepto,function () {
+            var bene = this.afiliado.split("-");
+            var paren = bene[1].split("(");
+            var tam = paren[1].length;
+            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
+            fila+= "<tr class='filaconcep'><td>"+paren[1].substring(0,(tam-1))+"</td><td>"+bene[0]+"</td><td>"+paren[0]+"</td>" +
+                "<td>"+this.descripcion+"</td><td>"+this.DatoFactura.numero+"</td><td>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\">"+mntformato+"</td><td></td><td></td></tr>";
+        });
+        $("#cuerpoConceptos").html(fila);
+    }
+</script>
+</html>

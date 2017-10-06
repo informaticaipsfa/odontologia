@@ -1,0 +1,144 @@
+<div class="row">
+    <div class="col-md-9">
+        <form class="form-horizontal" id="_frmDatoBasico">
+            <div class="box box-primary box-solid ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Datos</h3>
+                </div>
+                <div class="box-body">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <label>Cédula:</label>
+                                <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" disabled="disabled">V
+                    </button>
+                </span>
+                                    <input class="form-control" id="txtcedula" type="text" disabled="disabled"
+                                           maxlength="8" required tabindex="1" onblur="BuscarInsert()">
+                                    <input type="hidden" id="txtnropersona">
+                                </div>
+                            </div> <!-- Cedula -->
+                            <div class="col-md-4 col-sm-12">
+                                <label>Nombres:</label>
+                                <input id="txtnombre" class="form-control" type="text" disabled="disabled" required
+                                       tabindex="2" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label>Apellidos:</label>
+                                <input id="txtapellido" class="form-control" type="text" disabled="disabled" required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <!-- Grupo nombres-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <label>Grado:</label>
+                                <input id="cmbgrado" class="form-control" type="text" disabled="disabled" required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <label>Componente:</label>
+                                <input id="cmbcomponente" class="form-control" type="text" disabled="disabled" required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <label>Situación:</label>
+                                <input id="cmbsituacion" class="form-control" type="text" disabled="disabled" required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <label>Estado civil:</label>
+                                <input id="cmbedocivil" class="form-control" type="text" disabled="disabled" required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="box-header with-border">
+                            <center><h3 class="box-title">Dirección</h3></center>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Estado:</label>
+                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                        id="cmbmestado" required onchange="CiudadMunicipio()">
+                                    <option value="S" selected="selected"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Ciudad:</label>
+                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                        id="cmbmciudad" required>
+                                    <option value="S" selected="selected"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Municipio:</label>
+                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                        id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                    <option value="S" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Parroquia:</label>
+                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                        id="cmbmparroquia" required>
+                                    <option value="S" selected="selected"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Avenida / Edificio / Calle:</label>
+                                <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label># Casa:</label>
+                                <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
+                            </div>
+                            <div class="col-md-2">
+                                <label># Apto:</label>
+                                <input id="txtmapto" class="form-control" disabled="disabled" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Teléfono:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input id="txtmtelefono" class="form-control" disabled="disabled" type="text"
+                                           data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Celular:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                           data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="control-label">Correo Electronico:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
+                                           required onblur="ValidarCorreo()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BIENESTAR</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="dist/css/_all-skins_1.css">
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+    <link rel="stylesheet" href="dist/css/fonts.googleapis.css">
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
+</head>
+
+<style type="text/css">
+    .row-centered {
+        text-align: center;
+    }
+
+    .col-centered {
+        display: inline-block;
+        float: none;
+        text-align: left;
+        margin-right: -4px;
+    }
+
+    td {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    input {
+        text-transform: uppercase;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+    .logo1 {
+        -webkit-transition: width .3s ease-in-out;
+        -o-transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+        text-align: center;
+        width: 580px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 0 15px;
+        font-weight: 300;
+        overflow: hidden;
+    }
+
+    .detfactconcep{
+        display: none;
+    }
+
+</style>
+<body class="hold-transition skin-yellow">
+<header class="header" style="background-color:#3c8dbc">
+    <div class="row">
+        <div class="col-md-3 hidden-xs"><img src='images/ng.png' class="img-responsive" alt="Responsive image"
+                                             style='float: left;'></div>
+        <div class="col-md-6 hidden-xs">
+            <center><img src='images/rv.png' class="img-responsive" alt="Responsive image" style="margin-top:6px">
+            </center>
+        </div>
+        <div class="col-md-3 hidden-xs"><img src='images/lg.png' class="img-responsive" alt="Responsive image"
+                                             style="float:right;"></div>
+    </div>
+</header>
+
+<div class="wrapper">
+
+    <header class="main-header">
+        <a href="starter.html" class="logo">
+            <span class="logo-mini"><b>S</b>FNB</span>
+
+            <span class="logo-lg"><b>SSSI</b>FANB</span>
+
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <span class="logo1 hidden-xs">Sistema de Seguridad Social Integral de la Fuerza Armada Nacional Bolivariana</span>
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu" style="" id="_search" onclick="ActivarBuscar()">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="images/ndisponible.jpg" onerror="this.src='images/ndisponible.jpg'"
+                                 class="user-image" alt="User Image">
+                            <span class="hidden-xs" id="_PerfilUsuario"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="images/ndisponible.jpg" class="img-circle"
+                                     onerror="this.src='images/ndisponible.jpg'" alt="User Image">
+                                <p id="_NombreUsuario">
+
+
+                                </p>
+
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="VerCambiarClave()">Cambiar
+                                        clave</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="CerrarSession()">Cerrar
+                                        Sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree" id='_menu'>
+
+                <li class='header'>Menu</li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-link"></i> <span>Apoyos económicos</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="#">Link in level 2</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="#"><i class="fa-balance-scale"></i> <span>Carta aval</span></a></li>
+                <li><a href="#"><i class="fa fa-link"></i> <span>Reembolsos Médicos</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div id="modalreembolso"></div>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Cuidado Integral de la Salud
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content" id="panelderecho">
+            <div class="row" id="_bxBuscar">
+                <input type="text" id="buscar" onblur="buscar()">
+            </div>
+            <div class="row" id="paneldatos">
+                <div class="col-md-9" id="panellista">
+                    <!--  ACA SE CARGA EL LISTA REEMBOLSOS!-->
+                </div>
+
+                <!-- /.col -->
+                <div class="col-md-9" id="panelregistro"><label id="lblnombre"></label><input type="text" disabled id="txtapellido">
+
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <div class="col-md-3" id="panelperfil">aca esta el 3
+                    <!--  ACA SE CARGA EL PERFIL!-->
+                </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="plugins/iCheck/icheck.min.js"></script>
+
+<script src="bower_components/notify/notify.min.js"></script>
+<script src="js/config.js"></script>
+
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
+<script>
+    let obj;
+    function buscar(){
+        var Conn = new Conexion();
+        var cedula = $("#buscar").val();
+        var url = Conn.URL + "militar/crud/" + cedula;
+
+        var request = CargarAPI({
+            sURL: url,
+            metodo: 'GET',
+            valores: ''
+        });
+
+        request.then(function(xhRequest) {
+
+            obj =  JSON.parse(xhRequest.responseText);
+            console.log(obj);
+            $("#lblnombre").text(obj.Persona.DatoBasico.nombreprimero);
+            $("#txtapellido").val(obj.Persona.DatoBasico.apellidoprimero);
+
+        });
+    }
+</script>
+</body>
+</html>

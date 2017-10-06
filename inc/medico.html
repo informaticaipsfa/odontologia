@@ -1,0 +1,215 @@
+<script type="text/javascript">
+    $('#txtfecha').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es',
+        endDate: "+0d",
+
+    })
+    $('[data-mask]').inputmask();
+</script>
+
+<script src="js/apoyo.js"></script>
+
+<div class="body box">
+    <div class="container-fluid">
+        <form id="frmodontologia" action="#" method="post">
+            <div class="row">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                           aria-expanded="true" aria-controls="collapseOne">
+                            <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <b>Registro de Médicos</b>
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <form id="frmapoyoeconomico" action="#" method="post">
+                                    <div class="row">
+<div class="col-md-4 col-sm-12">
+                                <label>Cédula:</label>
+                                <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" ">V
+                    </button>
+                </span>
+                                    <input class="form-control" id="txtcedula" type="text"
+                                           maxlength="8" required tabindex="1" onkeypress="return soloNumero(event)">
+                                    
+                                </div>
+                            </div> <!-- Cedula -->
+                            <div class="col-md-4 col-sm-12">
+                                <label>Nombres:</label>
+                                <input id="txtnombre" class="form-control" type="text"  required
+                                       tabindex="2" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label>Apellidos:</label>
+                                <input id="txtapellido" class="form-control" type="text"  required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <!-- Grupo nombres-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <label>Especialidad:</label>
+                                <input id="txtespecialidad" class="form-control" type="text"  required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                                <label>Cod. Sanitario:</label>
+                                <input id="cmbcodsanitario" class="form-control" type="text"  required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                                <label>Cod. Registro Médico:</label>
+                                <input id="cmbsituacion" class="form-control" type="text"  required
+                                       tabindex="3" onkeypress="return soloLetras(event)">
+                            </div>
+
+                            <div class="col-md-4 col-sm-12">
+                                <label>Turno:</label>
+                                <select name="select" class="js-states form-control"
+                                        id="cmbturno" style="width: 100%" required aria-hidden="true">
+                        <option selected="selected" value="S"></option>
+                        <option value="">Matutino</option>
+                        <option value="">Vespertino</option>
+                      </select>
+                            </div>
+
+                  </div>
+
+             </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                            <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                                <h4 class="panel-title">
+                                    <b>Direccion del afiliado</b>
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingTree">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Estado:</label>
+                                        <select class="js-states form-control" style="width: 100%" "
+                                                id="cmbmestado" onchange="CiudadMunicipio()">
+                                            <option value="S" selected="selected"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Ciudad:</label>
+                                        <select class="js-states form-control" style="width: 100%" "
+                                                id="cmbmciudad">
+                                            <option value="S" selected="selected"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Municipio:</label>
+                                        <select class="js-states form-control" style="width: 100%" "
+                                                id="cmbmmunicipio" onchange="SeleccionarParroquia()">
+                                            <option value="S" selected="selected"></option>
+                                        </select>
+                                    </div>
+                                </div> <!-- Grupo nombres-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Parroquia:</label>
+                                        <select class="js-states form-control" style="width: 100%" "
+                                                id="cmbmparroquia">
+                                            <option value="S" selected="selected"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Avenida / Edificio / Calle:</label>
+                                        <input id="txtmcalle" class="form-control" " type="text"
+                                               required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label># Casa:</label>
+                                        <input id="txtmcasa" class="form-control" " type="text">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label># Apto:</label>
+                                        <input id="txtmapto" class="form-control" " type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Teléfono:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input id="txtmtelefono" class="form-control" "
+                                                   type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Celular:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input id="txtmcelular" class="form-control" " type="text"
+                                                   data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="control-label">Correo Electronico:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <input type="email" class="form-control" id="txtmcorreo" "
+                                                   onblur="Util.ValidarCorreo()">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        
+                                        <button class="btn btn-primary btn-success" type="button"
+                                                onclick="habilitarDireccion(true)"
+                                                style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                id="btndhabdire">Salvar &nbsp<i
+                                                class="glyphicon glyphicon-save"></i></button>
+                                    </div>
+                                </div>
+
+                            </div> <!-- Grupo nombres-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-app btn-success btnvolverentrada pull-left" href="#panelentrada" style="background-color: #337ab7;
+color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+                <a type="button" id="btnGenerar" class="btn btn-app btn-success pull-right" style="margin-right: 10px;background-color: #337ab7;
+color: white;" onclick="generarPlanilla()">
+                    <i class="fa fa-file-text"></i>&nbsp;&nbsp;GUARDAR
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
