@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ODONTOLOGÍA</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="dist/css/_all-skins_1.css">
+    <script src="bower_components/moment/moment.js"></script>
+
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<style type="text/css">
+    .row-centered {
+        text-align: center;
+    }
+
+    .col-centered {
+        display: inline-block;
+        float: none;
+        text-align: left;
+        margin-right: -4px;
+    }
+
+    td {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    input {
+        text-transform: uppercase;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+    .logo1 {
+        -webkit-transition: width .3s ease-in-out;
+        -o-transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+        text-align: center;
+        width: 580px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 0 15px;
+        font-weight: 300;
+        overflow: hidden;
+    }
+
+    .detfactconcep {
+        display: none;
+    }
+
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: }
+
+th {
+    background-color: #3c8dbc;
+    color: white;
+}
+
+th, td {
+    border-bottom: 2px solid #ddd;
+}
+
+</style>
+
+
+    <div class="container-fluid">
+        <div class="row">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                    <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                        <h4 class="panel-title">
+                               Datos del Beneficiario
+                        </h4>
+                    </div>
+                    </a>
+                    
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <form id="frmcitas" action="#" method="post">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Beneficiario:</label>
+                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario"
+                                                required="required">
+                                            <option selected="selected" value="S"></option>
+                                        </select>
+                                    </div>
+                          <div class="form-group">
+            <div class="col-md-4 col-sm-12">
+            <label>Cédula:</label>
+              <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">V
+                    </button>
+                </span>
+                <input class="form-control" id="txtcedula"  type="text"  maxlength="8" required tabindex="1" onblur="BuscarInsert()">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-success btn-flat"
+                  id="btncopiacedula" onClick="seleccionarCopiaCedula()"><i class="glyphicon glyphicon-paperclip"></i></button>
+                </span>
+              </div>
+          </div> <!-- Cedula -->
+        </div>
+        </div>
+            </form>
+                           
+                </div>
+                    </div>
+                    <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTree">
+                        <div class="panel-body">
+                        <div class="row">
+                               <div class="col-md-4">
+                                    <label>Nombres:</label>
+                                    <input id="txtmcasa" class="form-control"  type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Apellidos:</label>
+                                    <input id="txtmcasa" class="form-control"  type="text">
+                                </div>
+                              
+                            </div> <!-- Grupo nombres-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Estado:</label>
+                                    <select class="js-states form-control" style="width: 100%" 
+                                            id="cmbmestado" required onchange="CiudadMunicipio()">
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Ciudad:</label>
+                                    <select class="js-states form-control" style="width: 100%" 
+                                            id="cmbmciudad" required>
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Municipio:</label>
+                                    <select class="js-states form-control" style="width: 100%" 
+                                            id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                            </div> <!-- Grupo nombres-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Parroquia:</label>
+                                    <select class="js-states form-control" style="width: 100%" 
+                                            id="cmbmparroquia" required>
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Avenida / Edificio / Calle:</label>
+                                    <input id="txtmcalle" class="form-control"  type="text" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label># Casa:</label>
+                                    <input id="txtmcasa" class="form-control"  type="text">
+                                </div>
+                                <div class="col-md-2">
+                                    <label># Apto:</label>
+                                    <input id="txtmapto" class="form-control"  type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Teléfono:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input id="txtmtelefono" class="form-control"  type="text"
+                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Celular:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input id="txtmcelular" class="form-control" d type="text"
+                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label class="control-label">Correo Electronico:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="email" class="form-control" id="txtmcorreo"
+                                               required onblur="Util.ValidarCorreo()">
+                                    </div>
+                                </div>
+                            </div>
+                         
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                            onclick="habilitarDireccion(false)"
+                                            style="margin-left:1200px; margin-top: 15px; ">Modificar &nbsp<i
+                                            class="glyphicon glyphicon-edit"></i></button>
+                                 
+                                </div>
+                       
+                        </div> <!-- Grupo nombres-->
+                    </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <form class="form-horizontal" id="_frmDatoBasico">
+<div class="box box-primary box-solid " >
+  <div class="box-header with-border">
+
+     <h3 class="box-title">Ficha de Emergencia Odontológica</h3>
+
+  </div>
+</div>
+
+<div class="box-body">
+
+  <div class="box-body">
+      <div class="form-group">
+          <div class="col-md-3 col-sm-6">
+            <label>Historia Clínica N°:</label>
+            <input  id="txtnombre" class="form-control"  type="text" disabled="disabled" required tabindex="2" onkeypress="return soloLetras(event)">
+          </div>
+        <div class="col-md-3 col-sm-6">
+            <label>Fecha:</label>
+              <div class="input-group date">
+                 <div class="input-group-addon">
+                   <i class="fa fa-calendar"></i>
+                 </div>
+                <div class="input-group input-group">
+                   <input type="text" class="form-control"  id="txtnacimiento" disabled="disabled" tabindex="4">
+                    <span class="input-group-btn">
+                    </span>
+                </div>
+              </div>
+        </div>
+      </div> <!-- Grupo nombres-->
+
+      <div class="form-group">
+          <div class="col-md-3 col-sm-6">
+             <label>Beneficiario:</label>
+              <select class="form-control" style="width: 100%" id="cmbbeneficiario" required="required">
+               <option selected="selected" value="S"></option>
+              </select>
+         </div>
+      </div>
+    <div class="form-group">
+      <div class="col-md-3 col-sm-8">
+            <label>En caso de Emergencia Avisar Nombre:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+      </div>
+            <div class="col-md-3 col-sm-8">
+                  <label >Teléfono:</label>
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-phone"></i>
+                    </div>
+
+                    <input type="text" class="form-control"  id="txtfechagraduacion" disabled="disabled" tabindex="4" required>
+                </div>
+              </div>
+
+          <div class="col-md-3 col-sm-8">
+            <label>Parentesco:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+      </div>  
+
+        <div class="form-group">
+          <div class="col-md-3 col-sm-8">
+            <label>ANTECEDENTES PERSONALES:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+          
+
+          <div class="col-md-3 col-sm-8">
+            <label>HÁBITOS PSICOLOGICOS:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+
+
+    <div class="form-group">
+  <div class="col-md-3 col-sm-8">
+    <label>MOTIVO DE LA CONSULTA:</label>
+    <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+  </div>
+    </div> 
+ </div>
+
+      <div class="form-group">
+          <div class="col-md-3 col-sm-8">
+            <label>ALERGIA:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+        
+          <div class="col-md-3 col-sm-8">
+            <label>ENFERMEDAD SITÉMICA:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+
+    <div class="form-group">
+  <div class="col-md-3 col-sm-8">
+    <label>MEDICAMENTO:</label>
+    <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+  </div>
+    </div> 
+ </div>
+
+
+      <div class="form-group">
+          <div class="col-md-3 col-sm-8">
+            <label>EXAMEN RADIOGRÁFICO:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+        
+          <div class="col-md-3 col-sm-8">
+            <label>DIAGNÓSTICO:</label>
+           <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+          </div>
+          
+    <div class="form-group">
+  <div class="col-md-3 col-sm-8">
+    <label>TRATAMIENTO PROLONGADO:</label>
+    <input  id="txtapellido" class="form-control"  type="text"  required tabindex="3" onkeypress="return soloLetras(event)">
+  </div>
+    </div> 
+ </div>
+
+ <div class="form-group">
+ <div class="col-md-3 col-sm-8">
+  <label for="comment">EXAMEN CLÍNICO:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+</div> 
+<div class="col-md-3 col-sm-8">
+  <label for="observaciones">OBSERVACIONES:</label>
+  <textarea class="form-control" rows="5" id="observaciones"></textarea>
+</div> 
+</div>
+
+ 
+    
+  </form>
+
+
+  </div>
+</div>
+
+</form>
+    </head>
+    </html>
+
+    
